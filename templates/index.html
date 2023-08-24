@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h1>Welcome, {{ session['username'] }}!</h1>
+    
+    <h2>Work Permit Requests</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Timestamp</th>
+            <th>Decision</th>
+        </tr>
+        {% for request in permit_requests %}
+        <tr>
+            <td>{{ request.name }}</td>
+            <td>{{ request.status }}</td>
+            <td>{{ request.timestamp }}</td>
+            <td>
+                <form action="/" method="post">
+                    <input type="hidden" name="name" value="{{ request.name }}">
+                    <select name="status">
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <br>
+    <a href="/logout">Logout</a>
+</body>
+</html>
