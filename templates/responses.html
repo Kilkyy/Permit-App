@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Work Permit Responses</title>
+</head>
+<body>
+    <h1>Work Permit Responses</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Request Timestamp</th>
+            <th>Response Timestamp</th>
+        </tr>
+        {% for request in permit_requests %}
+        <tr>
+            <td>{{ request.name }}</td>
+            <td>{{ request.status }}</td>
+            <td>{{ request.timestamp }}</td>
+            <td>{{ request.response_timestamp or 'Not responded yet' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Request More Permits</a> | <a href="/logout">Logout</a>
+</body>
+</html>
